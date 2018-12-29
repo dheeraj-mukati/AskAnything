@@ -1,2 +1,2 @@
 # AskAnything
-AskAnything is a Question &amp; Answer forum build on Spring Boot Microservices with Angular
+AskAnything is a Question &amp; Answer forum build with technlogies like Spring Boot Microservices and Angular
