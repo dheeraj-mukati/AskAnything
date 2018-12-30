@@ -7,7 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class Answer {
@@ -21,10 +22,10 @@ public class Answer {
 	private String answer;
 	
 	@OneToOne
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Question question;
 	
-	private Date createDt;
+	private Date createDt = new Date();
 
 	public int getId() {
 		return id;

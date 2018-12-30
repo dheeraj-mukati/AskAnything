@@ -28,10 +28,4 @@ public class CategoryController {
 		
 		return categoryRepository.save(category);
 	}
-	
-	@GetMapping(value="all")
-	public String abc(){
-		
-		return "ram2";
-	}
 }

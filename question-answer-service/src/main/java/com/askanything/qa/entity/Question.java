@@ -1,15 +1,14 @@
 package com.askanything.qa.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class Question {
@@ -19,17 +18,24 @@ public class Question {
 	private int id;
 	
 	@OneToOne
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Category category;
 	
 	private int userId;
 	private String question;
 	private String description;
-	private Date createDt;
+	private Date createDt = new Date();
 	
-	@OneToMany(mappedBy="question")
-	@JsonIgnore
-	private List<Answer> answers;
 	
+	//default constructor
+	public Question() {
+		
+	}
+	
+	public Question(int id) {
+		this.id=id;
+	}
+
 	public int getId() {
 		return id;
 	}
