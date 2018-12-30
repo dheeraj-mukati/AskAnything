@@ -3,6 +3,7 @@ package com.askanything.userservice;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,5 +39,11 @@ public class UserController {
 		else
 			return "User logged in!";
 		
+	}
+	
+	@GetMapping(value="12345")
+	public String abc12(){
+		
+		return "bhagwan";
 	}
 }
