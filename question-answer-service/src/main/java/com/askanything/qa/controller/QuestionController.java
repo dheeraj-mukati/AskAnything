@@ -17,7 +17,7 @@ import com.askanything.qa.repository.QuestionRepository;
 @RestController
 @CrossOrigin
 public class QuestionController {
-
+ 
 	@Autowired
 	QuestionRepository questionRepository;
 	
@@ -27,7 +27,7 @@ public class QuestionController {
 		return questionRepository.findAll();
 	}
 	
-	@GetMapping(value="questions/category/{id}")
+	@GetMapping(value="questions/categories/{id}")
 	public List<Question> getQuestionByCatefory(@PathVariable int id){
 		
 		return questionRepository.findByCategory(new Category(id));

@@ -21,7 +21,7 @@ public class AnswerController {
 	@Autowired
 	AnswerRepository answerRepository;
 	
-	@GetMapping(value="answers/question/{id}")
+	@GetMapping(value="answers/questions/{id}")
 	public List<Answer> getAnswer(@PathVariable int id){
 		
 		return answerRepository.findByQuestion(new Question(id));
