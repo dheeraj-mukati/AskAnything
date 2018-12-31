@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataService } from '../data.service';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor() { }
+  categories$: Object;
+
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.getCategories().subscribe(
+      data => this.categories$ = data
+    );
   }
 
 }

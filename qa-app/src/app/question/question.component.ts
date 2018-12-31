@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataService } from '../data.service';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from "@angular/router";
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionComponent implements OnInit {
 
-  constructor() { }
+  category$: Object;
+  questions$: Object;
+
+  constructor(private data: DataService, private route: ActivatedRoute) {
+    this.route.params.subscribe(
+      params => this.category$ = params.id
+    )
+  }
 
   ngOnInit() {
+    this.data.getQuestionsByCategory(this.category$).subscribe(
+      data => this.questions$ = data
+    );
   }
 
 }

@@ -1,3 +1,11 @@
 <p>
   answer works!
 </p>
+
+
+<ul>
+  <li *ngFor="let answer of answers$">
+
+  <a href="/answers/{{answer.id}}">{{answer.answer}}</a>
+  </li>
+</ul>

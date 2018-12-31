@@ -8,6 +8,8 @@ import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { UserComponent } from './user/user.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { UserComponent } from './user/user.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
