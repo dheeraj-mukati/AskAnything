@@ -20,7 +20,7 @@ const routes: Routes = [
     component: QuestionComponent
   },
   {
-    path: 'answers/:id',
+    path: 'answers/:question/:id',
     component: AnswerComponent
   }
 ];

@@ -4,6 +4,8 @@ import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from "@angular/router";
 
+import {QuestionM} from '../model/questionM';
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -11,8 +13,9 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class QuestionComponent implements OnInit {
 
-  category$: Object;
-  questions$: Object;
+  category$: Number
+  questions$: Object
+  questionM: QuestionM = new QuestionM();
 
   constructor(private data: DataService, private route: ActivatedRoute) {
     this.route.params.subscribe(
@@ -23,7 +26,20 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.data.getQuestionsByCategory(this.category$).subscribe(
       data => this.questions$ = data
-    );
+    )
   }
 
+  createQuestion(){
+
+    this.questionM.userId = 108;
+    this.questionM.category = +this.category$;
+
+      this.data.createQuestion(this.questionM).subscribe(
+        data => {
+          console.log('Question created')
+          this.questionM = new QuestionM();
+          this.ngOnInit();
+        }
+      )
+  }
 }

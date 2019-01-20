@@ -1,14 +1,35 @@
-<p>
-  question works!
-</p>
 
 
+<div class="right">
+
+  <div class="col-md-6">
+    <h2 class="text-center">Add Question</h2>
+  <form>
+    <div class="form-group">
+      <label for="email">Question goes here:</label>
+      <input type="email" [(ngModel)]="questionM.question" placeholder="Question" name="question" class="form-control" id="question">
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">Description goes here:</label>
+      <textarea rows="8" cols="80" [(ngModel)]="questionM.description" placeholder="Description" name="description" class="form-control" id="description">
+      </textarea>
+    </div>
+
+    <button class="btn btn-success" (click)="createQuestion()">Ask</button>
+  </form>
+  </div>
+
+<div class="right-qstn">
+  <h4 class="text-left">Already {{questions$.length}} questions for this category</h4>
+  <hr>
 <ul>
-  <li *ngFor="let question of questions$">
+  <li *ngFor="let question2 of questions$">
 
-  <h3><a href="/answers/{{question.id}}">{{question.question}}</a></h3>
-    <br>
-    {{question.description}}
+  <h3><a href="/answers/{{question2.question}}/{{question2.id}}">{{question2.question}}</a></h3>
+    <h4>{{question2.description}}</h4>
 
   </li>
 </ul>
+</div>
+</div>

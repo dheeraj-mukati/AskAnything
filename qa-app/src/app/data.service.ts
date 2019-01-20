@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
 
 import {HttpClient} from '@angular/common/http';
+import {QuestionM} from '../model/questionM';
+import {AnswerM} from '../model/answerM';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+  private questionUrl = "http://localhost:8080/questions";
+  private categoryUrl = "http://localhost:8080/categories";
+  private answerUrl = "http://localhost:8080/answers";
+
+
   constructor(private http: HttpClient) { }
 
   getCategories(){
-    return this.http.get('http://localhost:8080/categories');
+    return this.http.get(this.categoryUrl);
   }
 
   getQuestions(){
-    return this.http.get('http://localhost:8080/questions');
+    return this.http.get(this.questionUrl);
   }
 
   getQuestionsByCategory(categoryId){
@@ -23,5 +30,13 @@ export class DataService {
 
   getAnswers(questionId){
     return this.http.get('http://localhost:8080/answers/questions/'+questionId);
+  }
+
+  createQuestion(questionM){
+    return this.http.post(this.questionUrl,questionM);
+  }
+
+  createAnswer(answerM){
+    return this.http.post(this.answerUrl,answerM);
   }
 }
