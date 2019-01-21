@@ -9,9 +9,9 @@ import {AnswerM} from '../model/answerM';
 })
 export class DataService {
 
-  private questionUrl = "http://localhost:8080/questions";
-  private categoryUrl = "http://localhost:8080/categories";
-  private answerUrl = "http://localhost:8080/answers";
+  private questionUrl = "http://localhost:8081/questions";
+  private categoryUrl = "http://localhost:8081/categories";
+  private answerUrl = "http://localhost:8081/answers";
 
 
   constructor(private http: HttpClient) { }
@@ -25,11 +25,11 @@ export class DataService {
   }
 
   getQuestionsByCategory(categoryId){
-    return this.http.get('http://localhost:8080/questions/categories/'+categoryId);
+    return this.http.get('http://localhost:8081/questions/categories/'+categoryId);
   }
 
   getAnswers(questionId){
-    return this.http.get('http://localhost:8080/answers/questions/'+questionId);
+    return this.http.get('http://localhost:8081/answers/questions/'+questionId);
   }
 
   createQuestion(questionM){
