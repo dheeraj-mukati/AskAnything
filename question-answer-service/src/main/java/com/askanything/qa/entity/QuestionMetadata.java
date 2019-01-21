@@ -1,18 +1,20 @@
-package com.askanything.metadata.entity;
+package com.askanything.qa.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
 public class QuestionMetadata {
+
+	private int id;
 	
-	@Id
 	private int questionId;
 	private int voteCount;
 	private int answerCount;
 	private int viewCount;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getQuestionId() {
 		return questionId;
 	}

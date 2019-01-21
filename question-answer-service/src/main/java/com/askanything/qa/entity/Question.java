@@ -1,11 +1,13 @@
 package com.askanything.qa.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -26,6 +28,11 @@ public class Question {
 	private String description;
 	private Date createDt = new Date();
 	
+	@Transient
+	private List<Comment> comments;
+	
+	@Transient
+	private QuestionMetadata questionMetadata;
 	
 	//default constructor
 	public Question() {
@@ -84,4 +91,20 @@ public class Question {
 		this.createDt = createDt;
 	}
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public QuestionMetadata getQuestionMetadata() {
+		return questionMetadata;
+	}
+
+	public void setQuestionMetadata(QuestionMetadata questionMetadata) {
+		this.questionMetadata = questionMetadata;
+	}
+
 }
