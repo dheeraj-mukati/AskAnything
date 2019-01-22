@@ -1,35 +1,55 @@
-
-
 <div class="right">
 
   <div class="col-md-6">
     <h2 class="text-center">Add Question</h2>
-  <form>
-    <div class="form-group">
-      <label for="email">Question goes here:</label>
-      <input type="email" [(ngModel)]="questionM.question" placeholder="Question" name="question" class="form-control" id="question">
-    </div>
+    <form>
+      <div class="form-group">
+        <label for="email">Question goes here:</label>
+        <input type="email" [(ngModel)]="questionM.question" placeholder="Question" name="question" class="form-control" id="question">
+      </div>
 
-    <div class="form-group">
-      <label for="firstName">Description goes here:</label>
-      <textarea rows="8" cols="80" [(ngModel)]="questionM.description" placeholder="Description" name="description" class="form-control" id="description">
+      <div class="form-group">
+        <label for="firstName">Description goes here:</label>
+        <textarea rows="8" cols="80" [(ngModel)]="questionM.description" placeholder="Description" name="description" class="form-control" id="description">
       </textarea>
-    </div>
+      </div>
 
-    <button class="btn btn-success" (click)="createQuestion()">Ask</button>
-  </form>
+      <button class="btn btn-success" (click)="createQuestion()">Ask</button>
+    </form>
   </div>
 
-<div class="right-qstn">
-  <h4 class="text-left">Already {{questions$.length}} questions for this category</h4>
-  <hr>
-<ul>
-  <li *ngFor="let question2 of questions$">
+  <div class="right-qstn">
+    <h4 class="text-left">Already {{questions$.length}} questions for this category</h4>
+    <hr>
+    <div *ngFor="let question of questions$" class="list-group">
 
-  <h3><a href="/answers/{{question2.question}}/{{question2.id}}">{{question2.question}}</a></h3>
-    <h4>{{question2.description}}</h4>
 
-  </li>
-</ul>
-</div>
+        <a href="/answers/{{question.question}}/{{question.id}}" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1">{{question.question}}</h3>
+          </div>
+          <p class="mb-1">{{question.description}}</p>
+        <ng-template *ngIf="question.questionMetadata;then showMetadata; else notShowMetadata">
+        </ng-template>
+
+        <ng-template #showMetadata>
+          <small>
+            Vote: {{question.questionMetadata.voteCount}}
+            | Total answer: {{question.questionMetadata.answerCount}}
+            | Viewed: {{question.questionMetadata.viewCount}}
+            | Asked: {{question.createDt | date:'medium'}}
+          </small>
+        </ng-template>
+
+        <ng-template #notShowMetadata>
+          <small>
+            Vote: 0
+            | Total answer: 0
+            | Viewed: 0
+            | Asked: {{question.createDt | date:'medium'}}
+          </small>
+        </ng-template>
+        </a>
+    </div>
+  </div>
 </div>

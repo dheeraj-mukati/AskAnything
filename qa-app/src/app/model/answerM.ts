@@ -1,6 +1,7 @@
 export class AnswerM {
 
-    public question: Number,
-    public answer: string,
-    public userId: Number
+  public question: Number,
+  public answer: String,
+  public userId: Number,
+  public comments: CommentM
 }

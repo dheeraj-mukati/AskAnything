@@ -4,7 +4,7 @@ import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from "@angular/router";
 
-import {AnswerM} from '../model/answerM';
+import { AnswerM } from '../model/answerM';
 
 @Component({
   selector: 'app-answer',
@@ -13,17 +13,17 @@ import {AnswerM} from '../model/answerM';
 })
 export class AnswerComponent implements OnInit {
 
-  answers$: Object;
-  questionId$: Object;
-  questionVal$: Object;
+  answers$: AnswerM;
+  questionId$: Number;
+  questionVal$: Number;
+  questionM: QuestionM;
 
   answerM: AnswerM = new AnswerM();
 
   constructor(private data: DataService, private route: ActivatedRoute) {
     this.route.params.subscribe(
       params => {
-                  this.questionId$ = params.id
-                  this.questionVal$ = params.question
+        this.questionId$ = params.id
       }
     )
   }
@@ -32,9 +32,13 @@ export class AnswerComponent implements OnInit {
     this.data.getAnswers(this.questionId$).subscribe(
       data => this.answers$ = data
     );
+
+    this.data.getQuestionInfo(this.questionId$).subscribe(
+      data => this.questionM = data
+    );
   }
 
-  createAnswer(){
+  createAnswer() {
     this.answerM.question = +this.questionId$;
     this.answerM.userId = 108;
 

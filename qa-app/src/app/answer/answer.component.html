@@ -1,26 +1,42 @@
 <div class="right">
-<h1 class="text-left">{{questionVal$}}</h1>
-<hr>
-<h4 class="text-left">{{answers$.length}} Answers</h4>
-<ul>
-  <li *ngFor="let answer of answers$">
-
-  <h4>{{answer.answer}}</h4>
-  </li>
-</ul>
-
-
-<div class="col-md-6">
-  <h3 class="text-left">Add Your Answer:</h3>
-<form>
-  <div class="form-group">
-    <textarea rows="8" cols="80" [(ngModel)]="answerM.answer" placeholder="Write your answer" name="description" class="form-control" id="description">
-    </textarea>
+  <div>
+    <h1 class="text-left">{{questionM.question}}</h1>
+    <h3 class="text-left">{{questionM.description}}</h3>
   </div>
+  <hr>
+  <div>
+    <ul>
+      <li *ngFor="let comment of questionM.comments">
 
-  <button class="btn btn-success" (click)="createAnswer()">Submit</button>
-</form>
-</div>
+        <h4>{{comment.comment}}</h4>
+      </li>
+    </ul>
+  </div>
+  <hr>
+  <h3 class="text-left">{{answers$.length}} Answers</h3>
+  <hr>
+  <ul>
+    <li *ngFor="let answer of answers$">
+      <h4>{{answer.answer}}</h4>
+      <ul>
+        <li *ngFor="let comment of answer.comments">
+          <h4>{{comment.comment}}</h4>
+        </li>
+      </ul>
+      <hr>
+    </li>
+  </ul>
 
+  <div class="col-md-6">
+    <h3 class="text-left">Add Your Answer:</h3>
+    <form>
+      <div class="form-group">
+        <textarea rows="8" cols="80" [(ngModel)]="answerM.answer" placeholder="Write your answer" name="description" class="form-control" id="description">
+    </textarea>
+      </div>
+
+      <button class="btn btn-success" (click)="createAnswer()">Submit</button>
+    </form>
+  </div>
 
 </div>

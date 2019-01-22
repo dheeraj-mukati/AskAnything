@@ -24,6 +24,10 @@ export class DataService {
     return this.http.get(this.questionUrl);
   }
 
+  getQuestionInfo(questionId){
+    return this.http.get(this.questionUrl + '/' + questionId);
+  }
+
   getQuestionsByCategory(categoryId){
     return this.http.get('http://localhost:8081/questions/categories/'+categoryId);
   }
